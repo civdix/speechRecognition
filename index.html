@@ -1,0 +1,33 @@
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speech Recognition.....</title>
+  </head>
+  <body>
+    <div
+      style="width: 100px; height: 100px; color: black; border: 1px solid black"
+      name="result"
+      class="result"
+    >
+      <span class="finalResult"></span>
+      <span class="interimResult"></span>
+    </div>
+    <button class="buttonStart">Start listening</button>
+    <button class="buttonStop" >Stop listening</button>
+    <p id="listening">
+      Listening
+      <script>
+        if (document.getElementById("listening").style.display == "block") {
+          let i = 1;
+          setInterval(() => {
+            document.getElementById("listening").innerText += "." * (i % 4);
+            i == 4 ? (i = 1) : (i += 1);
+          }, 500);
+        }
+      </script>
+    </p>
+  </body>
+  <script src="./speechRecognition.js"></script>
+</html>
