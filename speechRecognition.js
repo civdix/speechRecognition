@@ -3,16 +3,16 @@ if ("webkitSpeechRecognition" in window) {
   let speechRecognition = new webkitSpeechRecognition();
   speechRecognition.continuous = true;
   speechRecognition.interimResults = true;
-  speechRecognition.lang = "en-GB";
+  var language = document.querySelector(".form-select").value;
+  speechRecognition.lang = language;
+
   // speechRecognition.lang = "en-us";
   speechRecognition.onStart = () => {
     console.log("Running");
     document.getElementById("listening").style.display = "block";
-    document.title = "Listening...";
   };
   speechRecognition.onend = () => {
     document.getElementById("listening").style.display = "none";
-    document.title = "Speech Recognition";
   };
   speechRecognition.onerror = () => {
     document.getElementById("listening").style.display = "none";
@@ -32,17 +32,20 @@ if ("webkitSpeechRecognition" in window) {
       }
     }
 
-    document.querySelector(".finalResult").innerHTML = finalResult;
-    document.querySelector(".interimResult").innerHTML = interimResult;
+    document.querySelector("#floatingTextarea2").innerHTML = interimResult;
+    document.querySelector("#floatingTextarea2").innerText = finalResult;
   };
   document.querySelector(".buttonStart").onclick = () => {
     // Start the Speech Recognition
     console.log("Working button");
+    document.title = "Listening...";
     speechRecognition.start();
   };
 
   document.querySelector(".buttonStop").onclick = () => {
     // Start the Speech Recognition
+    document.title = "Speech Recognition";
+
     speechRecognition.stop();
   };
   function startRec() {
